@@ -17,7 +17,6 @@ int main(void)
 #############################-   CLEMENT CHAMEYRAT   -#########################\n\
 ###############################################################################\n");
 
-
     while (start != 1)
     {
         ft_putstr("\n\n\t\t\t     Convertire ou Traduire ? \n\t\t\t\t      C/T\n");
