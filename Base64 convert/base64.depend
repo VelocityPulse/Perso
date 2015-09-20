@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1441406630 source:\\192.168.1.254\disque dur\base64 convert\put.c
+	"head.h"
+
+1441405719 \\192.168.1.254\disque dur\base64 convert\head.h
+	<stdio.h>
+	<stdlib.h>
+	<fcntl.h>
+
+1441475086 source:\\192.168.1.254\disque dur\base64 convert\main.c
+	"head.h"
+
+1441479334 source:\\192.168.1.254\disque dur\base64 convert\convert.c
+	"head.h"
+
