@@ -13,7 +13,7 @@ LRESULT __stdcall HookProcedure(int nCode, WPARAM wParam, LPARAM lParam)
 			kbdStruct = *((KBDLLHOOKSTRUCT*)lParam);
 			if (kbdStruct.vkCode == VK_F2)
 			{
-				//MessageBox(NULL, L"F1 is pressed!", L"key pressed", MB_ICONINFORMATION);
+				//MessageBox(NULL, L"F2 is pressed!", L"key pressed", MB_ICONINFORMATION);
 				int cpt = 4;
 				while (cpt--)
 				{
