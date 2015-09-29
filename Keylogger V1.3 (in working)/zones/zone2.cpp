@@ -1,14 +1,12 @@
 #include "zones.h"
 
-unsigned char zone2(int key_value, keyboard_status kb_status) 
+unsigned char zone2(int key_value, keyboard_status kb_status)
 {
-	if (kb_status.verr_num != 0 && kb_status.verr_num != 1)
-		return (0);
-	else if (kb_status.verr_num == 1)
+	if (kb_status.alt_gr == 1 || kb_status.shift == 1 || kb_status.ctrl == 1)
 		return (0);
 	else
 	{
-		if (key_value >= 96 && key_value <= 105)
+		if (key_value >= 96 && key_value <= 105 && kb_status.verr_num == 0)
 			return (key_value - 48);
 		else
 			return (z2_num_pad(key_value));
@@ -37,5 +35,7 @@ unsigned char z2_num_pad(int key_value)
 	case 111 :
 		return (47);
 		break;
+	default :
+		return (0);
 	}
 }

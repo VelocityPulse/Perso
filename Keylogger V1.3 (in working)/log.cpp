@@ -2,16 +2,28 @@
 #include "zones.h"
 
 keyboard_status kb_status;
-bool sys_key_down;
 
 keyboard_status init_kb_status(int key_value)
 {
 	kb_status.verr_maj	= GetKeyState(VK_CAPITAL);
 	kb_status.verr_num	= GetKeyState(VK_NUMLOCK);
-	kb_status.shift		= GetKeyState(VK_SHIFT);
-	kb_status.ctrl		= GetKeyState(VK_CONTROL);
-	kb_status.alt_gr	= sys_key_down;
 	kb_status.zone		= key_zone(key_value);
+	// ---------------------------
+	if (GetKeyState(VK_SHIFT) == -127 || GetKeyState(VK_SHIFT) == -128)
+		kb_status.shift = 1;
+	else
+		kb_status.shift = 0;
+	// ---------------------------
+	if (GetKeyState(VK_CONTROL) == -127 || GetKeyState(VK_CONTROL) == -128)
+		kb_status.ctrl = 1;
+	else
+		kb_status.ctrl = 0;
+	// ---------------------------
+	if (GetKeyState(VK_MENU) == -127 || GetKeyState(VK_MENU) == -128)
+		kb_status.alt_gr = 1; 
+	else
+		kb_status.alt_gr = 0; 
+	// ---------------------------
 	return (kb_status);
 }
 
@@ -69,7 +81,7 @@ unsigned char translate_key_value(int key_value)
 	}
 }
 
-void analyse_keyboard_status(int key_value, bool, sys_key_down)
+void analyse_keyboard_status(int key_value)
 {
 	unsigned char charactere;
 
