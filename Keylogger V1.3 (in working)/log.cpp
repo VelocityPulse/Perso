@@ -2,6 +2,7 @@
 #include "zones.h"
 
 keyboard_status kb_status;
+bool sys_key_down;
 
 keyboard_status init_kb_status(int key_value)
 {
@@ -9,7 +10,7 @@ keyboard_status init_kb_status(int key_value)
 	kb_status.verr_num	= GetKeyState(VK_NUMLOCK);
 	kb_status.shift		= GetKeyState(VK_SHIFT);
 	kb_status.ctrl		= GetKeyState(VK_CONTROL);
-	kb_status.alt_gr	= GetKeyState(VK_MENU);
+	kb_status.alt_gr	= sys_key_down;
 	kb_status.zone		= key_zone(key_value);
 	return (kb_status);
 }
@@ -41,9 +42,7 @@ unsigned char translate_key_value(int key_value)
 {
 	init_kb_status(key_value);
 	if (kb_status.ctrl != 1 && kb_status.ctrl != 0)
-	{
-		
-	}
+		return (0);
 	switch (kb_status.zone)
 	{
 	case 0 :
@@ -70,7 +69,7 @@ unsigned char translate_key_value(int key_value)
 	}
 }
 
-void analyse_keyboard_status(int key_value)
+void analyse_keyboard_status(int key_value, bool, sys_key_down)
 {
 	unsigned char charactere;
 

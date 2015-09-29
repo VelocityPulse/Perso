@@ -15,6 +15,6 @@ void ReleaseHook();
 keyboard_status init_kb_status(int key_value);
 short key_zone(int key_value);
 unsigned char translate_key_value(keyboard_status kb_status, int key_value);
-void analyse_keyboard_status(int key_value);
+void analyse_keyboard_status(int key_value, bool sys_key_down);
 
 #endif // _HEADER_H

