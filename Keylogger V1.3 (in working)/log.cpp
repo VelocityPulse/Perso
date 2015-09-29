@@ -1,4 +1,5 @@
 #include "header.h"
+#include "modes.h"
 
 keyboard_status kb_status;
 
@@ -39,12 +40,12 @@ unsigned char translate_key_value(int key_value)
 	init_kb_status(key_value);
 	if (kb_status.mode == 0)
 		return (0);
-	else if (kb_status.mode == 1)
-		return(mode_1(key_value));
-	else if (kb_status.mode == 2)
-		return(mode_2(key_value));
-	else if (kb_status.mode == 3)
-		return(mode_3(key_value));
+	else if (kb_status.mode == 1) // char spéciaux
+		return(mode_1(key_value, kb_status));
+	else if (kb_status.mode == 2) // lettres
+		return(mode_2(key_value, kb_status));
+	else if (kb_status.mode == 3) // ²
+		return(mode_3(key_value, kb_status));
 }
 
 void analyse_keyboard_status(int key_value)
