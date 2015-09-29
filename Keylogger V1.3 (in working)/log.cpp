@@ -1,5 +1,5 @@
 #include "header.h"
-#include "modes.h"
+#include "zones.h"
 
 keyboard_status kb_status;
 
@@ -9,25 +9,27 @@ keyboard_status init_kb_status(int key_value)
 	kb_status.verr_num	= GetKeyState(VK_NUMLOCK);
 	kb_status.shift		= GetKeyState(VK_SHIFT);
 	kb_status.ctrl		= GetKeyState(VK_CONTROL);
-	kb_status.alt_gr	= GetKeyState(VK_RMENU);
-	kb_status.mode		= key_mode(key_value);
+	kb_status.alt_gr	= GetKeyState(VK_MENU);
+	kb_status.zone		= key_zone(key_value);
 	return (kb_status);
 }
 
-short key_mode(int key_value)
+short zone(int key_value)
 {
 	if (key_value >= 65 && key_value <= 90) // lettres
-		return (2); // 2		
-	else if (key_value >= 96 && key_value <= 105) // nums pad
-		return (1); // 1
+		return (1); // 1		
+	else if (key_value >= 96 && key_value <= 111 ) // nums pad
+		return (2); // 2
 	else if (key_value >= 48 && key_value <= 57) // nums
-		return (1); // 1
-	else if (key_value >= 186 && key_value <= 191) // :/  +=}  ,?  )°]  .;  !§
-		return (1); // 1
-	else if (key_value >= 219 && key_value <= 222) // ^¨  *µ  $£¤  ù%
-		return (1); // 1
-	else if (key_value == 192) // ²
 		return (3); // 3
+	else if (key_value == 186 || key_value == 187 || key_value == 188 || key_value == 190 
+		|| key_value == 191 || key_value == 192 || key_value == 219 || key_value == 220 
+		|| key_value == 221	|| key_value == 223 || key_value == 226)
+		return (4); // 4
+	else if (key_value == 13 || key_value == 8)  // entrer  supp
+		return (5); // 5 
+	else if (key_value == 192) // ²
+		return (6); // 6
 	else
 	{
 		printf(" unsigned "); // xxxxxxxxxxxxxxxx a supprimer
@@ -38,14 +40,34 @@ short key_mode(int key_value)
 unsigned char translate_key_value(int key_value)
 {
 	init_kb_status(key_value);
-	if (kb_status.mode == 0)
+	if (kb_status.ctrl != 1 && kb_status.ctrl != 0)
+	{
+		
+	}
+	switch (kb_status.zone)
+	{
+	case 0 :
 		return (0);
-	else if (kb_status.mode == 1) // char spéciaux
-		return(mode_1(key_value, kb_status));
-	else if (kb_status.mode == 2) // lettres
-		return(mode_2(key_value, kb_status));
-	else if (kb_status.mode == 3) // ²
-		return(mode_3(key_value, kb_status));
+		break;
+	case 1 :
+		return (zone1(key_value, kb_status)); 
+		break;
+	case 2 :
+		return (zone2(key_value, kb_status));
+		break;
+	case 3 :
+		return (zone3(key_value, kb_status));
+		break;
+	case 4 :
+		return (zone3(key_value, kb_status));
+		break;
+	case 5 :
+		return (zone4(key_value, kb_status));
+		break;
+	case 6 :
+		return (zone5(key_value, kb_status));
+		break;
+	}
 }
 
 void analyse_keyboard_status(int key_value)
@@ -56,7 +78,6 @@ void analyse_keyboard_status(int key_value)
 	charactere = translate_key_value(key_value);
 	if (charactere)
 		printf("%c", charactere);
-
 }
 
 

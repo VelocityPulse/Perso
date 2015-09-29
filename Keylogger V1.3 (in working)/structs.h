@@ -7,7 +7,7 @@ typedef struct	struct_keyboard_status {
 	short	shift;
 	short	ctrl;
 	short	alt_gr;
-	bool	mode;
+	short	zone;
 }				keyboard_status;
 
 #endif // _STRUCTS_H
