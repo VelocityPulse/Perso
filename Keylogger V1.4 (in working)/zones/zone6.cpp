@@ -1,0 +1,11 @@
+#include "zones.h"
+
+short zone6(int key_value, keyboard_status kb_status)
+{
+	if (key_value == 192)
+		return ('²');
+	else if (key_value == 32)
+		return (' ');
+	else 
+		return (0);
+}

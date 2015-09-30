@@ -1,6 +1,6 @@
 #include "zones.h"
 
-unsigned char zone1(int key_value, keyboard_status kb_status)
+short zone1(int key_value, keyboard_status kb_status)
 {
 	if (kb_status.ctrl == 1) // CTRL enfoncé
 		return (0);
@@ -22,7 +22,7 @@ unsigned char zone1(int key_value, keyboard_status kb_status)
 	}
 }
 
-unsigned char z1_alt_gr(int key_value, keyboard_status kb_status)
+short z1_alt_gr(int key_value, keyboard_status kb_status)
 {
 	if (kb_status.shift == 1)
 		return (0);

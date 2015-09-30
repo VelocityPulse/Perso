@@ -18,7 +18,7 @@ void StartKeyBoardHook()
 LRESULT __stdcall HookProcedure(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	keyboard_struct = *((KBDLLHOOKSTRUCT*)lParam);
-	if (nCode >= 0);
+	if (nCode >= 0)
 	{
 		if (wParam == WM_KEYDOWN)
 			analyse_keyboard_status(keyboard_struct.vkCode);

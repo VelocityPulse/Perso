@@ -1,11 +1,11 @@
 #include "zones.h"
 
-unsigned char zone3(int key_value, keyboard_status kb_status)
+short zone3(int key_value, keyboard_status kb_status)
 {
-	if (kb_status.ctrl == 1) // NI CONTROLE
+	if (kb_status.ctrl == 0) // NI CONTROLE
 		return (0);
 	else if (kb_status.alt_gr == 1) // ALT_GR enfoncé
-		return (z3_alt_gr(key_value, kb_status)); // vérifier maj
+		return (z3_alt_gr(key_value, kb_status)); // vérifie la maj
 	else if (kb_status.shift == 1)
 	{
 		if (kb_status.verr_maj == 1)
@@ -22,7 +22,7 @@ unsigned char zone3(int key_value, keyboard_status kb_status)
 	}
 }
 
-unsigned char z3_alt_gr(int key_value, keyboard_status kb_status)
+short z3_alt_gr(int key_value, keyboard_status kb_status)
 {
 	if (kb_status.shift == 1)
 		return (0);
@@ -44,7 +44,7 @@ unsigned char z3_alt_gr(int key_value, keyboard_status kb_status)
 	}
 }
 
-unsigned char z3_min(int key_value)
+short z3_min(int key_value)
 {
 	switch (key_value)
 	{
@@ -80,10 +80,12 @@ unsigned char z3_min(int key_value)
 		break;
 	case 226 :
 		return ('<');
+	default :
+		return (0);
 	}
 }
 
-unsigned char z3_maj(int key_value)
+short z3_maj(int key_value)
 {
 	switch (key_value)
 	{
@@ -119,6 +121,9 @@ unsigned char z3_maj(int key_value)
 		break;
 	case 226:
 		return ('>');
+	default : 
+		return (0);
+		break;
 	}
 }
 
