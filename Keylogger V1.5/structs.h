@@ -15,4 +15,9 @@ typedef struct	struct_keyboard_status {
 	
 }				keyboard_struct;
 
+typedef struct struct_str {
+	short				index;
+	char				str[32];
+	struct struct_str	*next;
+}				t_str;
 #endif // _STRUCTS_H

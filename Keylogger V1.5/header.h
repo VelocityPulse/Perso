@@ -17,6 +17,5 @@ short	translate_key_value(int key_value);
 short	analyse_keyboard_status(int key_value);
 
 void	edit_log(short character);
-void	file(WCHAR *character);
-
+void	window_title(void);
 #endif // _HEADER_H
