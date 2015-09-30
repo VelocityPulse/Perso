@@ -1,6 +1,6 @@
 #include "zones.h"
 
-short zone2(int key_value, keyboard_status kb_status)
+short zone2(int key_value, keyboard_struct kb_status)
 {
 	if (kb_status.alt_gr == 1 || kb_status.shift == 1 || kb_status.ctrl == 1)
 		return (0);

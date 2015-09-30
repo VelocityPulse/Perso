@@ -1,6 +1,6 @@
 #include "zones.h"
 
-short zone6(int key_value, keyboard_status kb_status)
+short zone6(int key_value, keyboard_struct kb_status)
 {
 	if (key_value == 192)
 		return ('²');

@@ -1,6 +1,6 @@
 #include "zones.h"
 
-short zone4(int key_value, keyboard_status kb_status)
+short zone4(int key_value, keyboard_struct kb_status)
 {
 	if (kb_status.alt_gr == 1)
 		return (z4_alt_gr(key_value, kb_status));
@@ -20,7 +20,7 @@ short zone4(int key_value, keyboard_status kb_status)
 	}
 }
 
-short z4_alt_gr(int key_value, keyboard_status kb_status)
+short z4_alt_gr(int key_value, keyboard_struct kb_status)
 {
 	if (kb_status.shift == 1)
 		return (0);

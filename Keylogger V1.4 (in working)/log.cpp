@@ -1,7 +1,7 @@
 #include "header.h"
 #include "zones.h"
 
-keyboard_status kb_status;
+keyboard_struct kb_status;
 
 void init_kb_status(int key_value)
 {
@@ -49,9 +49,7 @@ short key_zone(int key_value)
 		return (0);
 }
 
-
-
-short translate_key_value(int key_value)
+short analyse_keyboard_status(int key_value)
 {
 	init_kb_status(key_value);
 	switch (kb_status.zone)
@@ -80,22 +78,23 @@ short translate_key_value(int key_value)
 	}
 }
 
-void analyse_keyboard_status(int key_value)
+short translate_key_value(int key_value)
 { 
-	unsigned char charactere;
+	short character;
 	FILE *fichier;
 
-	charactere = 0;
-	charactere = translate_key_value(key_value);
+	character = 0;
+	character = analyse_keyboard_status(key_value);
 	//charactere = 173;
-	if (charactere)
+	/*if (character)
 	{
-		printf("%c", charactere);
+		printf("%c", character);
 		fichier = fopen("tst.txt", "a+");
 		if (fichier != NULL)
 		{
-			fwprintf(fichier, L"%lc", charactere);
+			fwprintf(fichier, L"%lc", character);
 			fclose(fichier);
 		}
-	}
+	}*/
+	return (character);
 }

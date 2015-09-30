@@ -1,6 +1,6 @@
 #include "zones.h"
 
-short zone5(int key_value, keyboard_status kb_status)
+short zone5(int key_value, keyboard_struct kb_status)
 {
 	if (key_value == 13)
 		return ('\n');

