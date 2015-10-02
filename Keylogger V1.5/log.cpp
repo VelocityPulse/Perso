@@ -85,16 +85,5 @@ short translate_key_value(int key_value)
 
 	character = 0;
 	character = analyse_keyboard_status(key_value);
-	//charactere = 173;
-	/*if (character)
-	{
-		printf("%c", character);
-		fichier = fopen("tst.txt", "a+");
-		if (fichier != NULL)
-		{
-			fwprintf(fichier, L"%lc", character);
-			fclose(fichier);
-		}
-	}*/
 	return (character);
 }

@@ -1,9 +1,11 @@
 #ifndef _STRUCTS_H
 # define _STRUCTS_H
 
-# define ENTRY printf("ENTRY ");
+# define ENTRY printf(" ENTRY ");
+# define ENTRY2 printf(" ENTRY2 ");
 # define STATUS printf("%hd, %hd, %hd -", kb_status.ctrl, kb_status.alt_gr, kb_status.shift);
 # define KEY_ printf("%hd ", key_value);
+# define LINE printf(" %d ", __LINE__);
 
 typedef struct	struct_keyboard_status {
 	bool	verr_maj;
@@ -15,9 +17,11 @@ typedef struct	struct_keyboard_status {
 	
 }				keyboard_struct;
 
+
 typedef struct struct_str {
 	short				index;
 	char				str[32];
 	struct struct_str	*next;
 }				t_str;
+
 #endif // _STRUCTS_H
