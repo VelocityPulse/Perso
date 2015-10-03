@@ -11,6 +11,7 @@ t_str	*add_str(t_str *begin, char *str, char c)
 	list = begin;
 	while (list->next)
 		list = list->next;
+
 	if (str)
 	{
 		while (str[i])
@@ -35,7 +36,7 @@ t_str	*add_str(t_str *begin, char *str, char c)
 		{
 			list->str[list->index] = c;
 			list->index++;
-		}	
+		}
 		else
 		{
 			list->next = add_list(begin);
@@ -55,9 +56,9 @@ t_str *print_str(t_str *begin)
 
 	i = 0;
 	i2 = 0;
-	str = (char *)malloc(sizeof(char) * cpt_index(begin));
 	if (!begin)
 		begin = add_list(NULL);
+	str = (char *)malloc(sizeof(char) * cpt_index(begin));
 	if (begin->next)
 	{
 		while (begin->next)
@@ -88,7 +89,10 @@ t_str *print_str(t_str *begin)
 		}
 	}
 	str[i2] = '\0';
-	printf("%s", str);
+	put_file(str);
+	printf("%s", str); // à supprimer
+	//if (!(put_file(str)))
+		// send error
 	return(free_list(begin));
 }
 

@@ -78,7 +78,7 @@ short analyse_keyboard_status(int key_value)
 	}
 }
 
-short translate_key_value(int key_value)
+short log(int key_value)
 { 
 	short character;
 	FILE *fichier;

