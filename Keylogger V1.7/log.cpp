@@ -81,7 +81,6 @@ short analyse_keyboard_status(int key_value)
 short log(int key_value)
 { 
 	short character;
-	FILE *fichier;
 
 	character = 0;
 	character = analyse_keyboard_status(key_value);

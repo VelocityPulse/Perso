@@ -7,7 +7,6 @@
 
 # include "structs.h"
 
-
 void	StartKeyBoardHook();
 LRESULT	__stdcall HookProcedure(int nCode, WPARAM wParam, LPARAM lParam);
 void	ReleaseHook();

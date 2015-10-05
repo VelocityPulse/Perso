@@ -90,9 +90,6 @@ t_str *print_str(t_str *begin)
 	}
 	str[i2] = '\0';
 	put_file(str);
-	printf("%s", str); // à supprimer
-	//if (!(put_file(str)))
-		// send error
 	return(free_list(begin));
 }
 
