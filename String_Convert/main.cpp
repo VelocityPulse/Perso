@@ -24,7 +24,6 @@ char *get_path(void)
 	while (path[i] != '\n')
 		i--;
 	path[i - 1] = 0;
-	printf("%s.", path);
 	return (path);
 }
 
@@ -32,24 +31,33 @@ void print_file(char *path)
 {
 	unsigned char *buffer;
 	int result;
+	int back_line;
 	FILE *src;
 	FILE *dest;
 	t_str *c_str = NULL;
 
 	buffer = (unsigned char*)malloc(sizeof(unsigned char));
-
+	back_line = 0;
 	src = fopen(path, "rb");
 	dest = fopen("Hexa.txt", "w+");
 	if (src != NULL)
 	{
-		do {
+		do 
+		{
 			result = fread(buffer, 1, 1, src);
 			fprintf(dest, "\t%#x", *buffer);
 			printf("\t%#x", *buffer);
+			back_line++;
 			if (result != 0)
 			{
 				fprintf(dest, ",");
 				printf(",");
+			}
+			if (back_line > 10)
+			{
+				printf("\n");
+				fprintf(dest, "\n");
+				back_line = 0;
 			}
 		} while (result != 0);
 		printf("};");
