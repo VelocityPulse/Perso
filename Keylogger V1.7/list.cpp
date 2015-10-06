@@ -16,7 +16,6 @@ t_str	*add_str(t_str *begin, char *str, char c)
 	{
 		while (str[i])
 		{
-			
 			if (list->index < 32)
 			{
 				list->str[list->index] = str[i];
@@ -48,7 +47,7 @@ t_str	*add_str(t_str *begin, char *str, char c)
 	return (begin);
 }
 
-t_str *print_str(t_str *begin)
+t_str *print_file_str(t_str *begin)
 {
 	int i;
 	int i2;
@@ -91,6 +90,50 @@ t_str *print_str(t_str *begin)
 	str[i2] = '\0';
 	put_file(str);
 	return(free_list(begin));
+}
+
+char *export_str(t_str *begin)
+{
+	int i;
+	int i2;
+	char *str;
+
+	i = 0;
+	i2 = 0;
+	if (!begin)
+		begin = add_list(NULL);
+	str = (char *)malloc(sizeof(char) * cpt_index(begin) + 1);
+	if (begin->next)
+	{
+		while (begin->next)
+		{
+			while (i < 32 && begin->str[i] != 0)
+			{
+				str[i2] = begin->str[i];
+				i2++;
+				i++;
+			}
+			begin = begin->next;
+			i = 0;
+		}
+		while (i < 32 && begin->str[i] != 0)
+		{
+			str[i2] = begin->str[i];
+			i2++;
+			i++;
+		}
+	}
+	else
+	{
+		while (i < 32 && begin->str[i] != 0)
+		{
+			str[i2] = begin->str[i];
+			i2++;
+			i++;
+		}
+	}
+	str[i2] = '\0';
+	return(str);
 }
 
 int cpt_index(t_str *begin)
@@ -143,6 +186,8 @@ t_str *free_list(t_str *begin)
 {
 	t_str *next;
 	
+	if (!begin)
+		return (0);
 	if (begin->next)
 	{
 		while (begin->next)
@@ -155,6 +200,6 @@ t_str *free_list(t_str *begin)
 	}
 	else
 		free(begin);
-	begin = add_list(NULL);
+	begin = NULL;
 	return (begin);
 }

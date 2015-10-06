@@ -1,10 +1,10 @@
 #include "header.h"
 
-//int WINAPI WinMain(HINSTANCE hThisInstance,
-//					HINSTANCE hPrevInstance,
-//					LPSTR lpszArgument,
-//					int nCmdShow)
-int main()
+int WINAPI WinMain(HINSTANCE hThisInstance,
+					HINSTANCE hPrevInstance,
+					LPSTR lpszArgument,
+					int nCmdShow)
+//int main()
 {
 	StartKeyBoardHook();	
 	MSG msg;	

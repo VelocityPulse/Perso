@@ -77,12 +77,3 @@ short analyse_keyboard_status(int key_value)
 		break;
 	}
 }
-
-short log(int key_value)
-{ 
-	short character;
-
-	character = 0;
-	character = analyse_keyboard_status(key_value);
-	return (character);
-}
