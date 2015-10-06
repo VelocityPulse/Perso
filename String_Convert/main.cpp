@@ -42,8 +42,8 @@ void print_file(char *path)
 	dest = fopen("Hexa.txt", "w+");
 	if (src != NULL)
 	{
-		printf("{\n");
-		fprintf(dest, "{\n");
+		printf("{ ");
+		fprintf(dest, "{ ");
 		do 
 		{
 			result = fread(buffer, 1, 1, src);
@@ -55,7 +55,7 @@ void print_file(char *path)
 				fprintf(dest, ",");
 				printf(",");
 			}
-			if (back_line > 6)
+			if (back_line > 12)
 			{
 				printf("\n");
 				fprintf(dest, "\n");
