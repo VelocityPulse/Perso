@@ -39,7 +39,7 @@ void print_file(char *path)
 	buffer = (unsigned char*)malloc(sizeof(unsigned char));
 	back_line = 0;
 	src = fopen(path, "rb");
-	dest = fopen("Hexa.txt", "w+");
+	dest = _wfopen(L"Hexa.txt", L"w+");
 	if (src != NULL)
 	{
 		printf("{ ");
@@ -47,20 +47,24 @@ void print_file(char *path)
 		do 
 		{
 			result = fread(buffer, 1, 1, src);
-			fprintf(dest, "\t%#x", *buffer);
-			printf("\t%#x", *buffer);
-			back_line++;
-			if (result != 0)
-			{
-				fprintf(dest, ",");
-				printf(",");
-			}
-			if (back_line > 12)
-			{
-				printf("\n");
-				fprintf(dest, "\n");
-				back_line = 0;
-			}
+			/*if (*buffer != 0xd && *buffer != 0xa)
+			{*/
+				printf(" %d", *buffer);
+				fprintf(dest, "\t%#x", *buffer);
+				printf("\t%#x", *buffer);
+				back_line++;
+				if (result != 0)
+				{
+					fprintf(dest, ",");
+					printf(",");
+				}
+				if (back_line > 12)
+				{
+					printf("\n");
+					fprintf(dest, "\n");
+					back_line = 0;
+				}
+			//}
 		} while (result != 0);
 		printf("};");
 		fprintf(dest, "};");
