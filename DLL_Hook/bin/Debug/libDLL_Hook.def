@@ -1,7 +1,0 @@
-EXPORTS
-    HookPorc@12 @1
-    hinstance @2 DATA
-    hook @3 DATA
-    hwnd @4 DATA
-    installhook @5
-    removehook @6
