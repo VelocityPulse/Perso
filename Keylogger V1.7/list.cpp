@@ -89,6 +89,7 @@ t_str *print_file_str(t_str *begin)
 	}
 	str[i2] = '\0';
 	put_file(str);
+	free(str);
 	return(free_list(begin));
 }
 
