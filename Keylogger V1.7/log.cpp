@@ -1,7 +1,7 @@
 #include "header.h"
 #include "zones.h"
 
-keyboard_struct kb_status;
+keyboard_struct kb_status;  // a supprimer
 
 void init_kb_status(int key_value)
 {
@@ -34,7 +34,7 @@ short key_zone(int key_value)
 	else if (key_value >= 96 && key_value <= 111)	// nums pad
 		return (2); // 2
 
-	else if (key_value == 186 || key_value == 187 || key_value == 188 || key_value == 190 // spéciaux
+	else if (key_value == 186 || key_value == 187 || key_value == 188 || key_value == 190 // spÃ©ciaux
 			|| key_value == 191 || key_value == 192 || key_value == 219 || key_value == 220
 			|| key_value == 221 || key_value == 223 || key_value == 226)
 		return (3); // 3
@@ -43,7 +43,7 @@ short key_zone(int key_value)
 		return (4); // 4
 	else if (key_value == 13 || key_value == 8)		// entrer  supp
 		return (5); // 5 
-	else if (key_value == 192 || key_value == 32)	//  ²   space 
+	else if (key_value == 192 || key_value == 32)	//  Â²   space 
 		return (6); // 6
 	else
 		return (0);
