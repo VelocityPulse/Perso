@@ -158,3 +158,4 @@ t_str *free_list(t_str *begin)
 	begin = NULL;
 	return (begin);
 }
+\ No newline at end of file
