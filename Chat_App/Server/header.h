@@ -20,11 +20,6 @@ void f_multicast(char *text, int src);
 void f_broadcast_pseudo(char *pseudo);
 void f_broadcast(char *text);
 
-bool f_exit_client(char *text)
-
-SOCKET *s_client;
-SOCKADDR_IN *client;
-HANDLE *h_thread;
-int i = 1;
+bool f_exit_client(char *text);
 
 #endif // _HEADER_H

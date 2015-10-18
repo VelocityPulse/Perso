@@ -1,5 +1,10 @@
 #include "header.h"
 
+extern SOCKET *s_client;
+extern SOCKADDR_IN *client;
+extern HANDLE *h_thread;
+extern int i;
+
 void f_broadcast(char *text)
 {
 	int id;

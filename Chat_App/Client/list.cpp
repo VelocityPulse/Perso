@@ -1,4 +1,4 @@
-#include "list.h"
+#include "header.h"
 
 t_str	*add_str(t_str *begin, char *str, char c)
 {
@@ -11,6 +11,7 @@ t_str	*add_str(t_str *begin, char *str, char c)
 	list = begin;
 	while (list->next)
 		list = list->next;
+
 	if (str)
 	{
 		while (str[i])

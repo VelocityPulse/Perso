@@ -6,3 +6,4 @@
 
 DWORD WINAPI f_receive(void*);
 DWORD WINAPI f_send(void*);
+bool f_exit_client(char *text);

@@ -1,5 +1,10 @@
 #include "header.h"
 
+SOCKET *s_client;
+SOCKADDR_IN *client;
+HANDLE *h_thread;
+int i = 1;
+
 DWORD WINAPI f_client(__in LPVOID lpParameter)
 {
 	int id;
@@ -10,6 +15,7 @@ DWORD WINAPI f_client(__in LPVOID lpParameter)
 	LPDWORD lpExitCode;
 
 	chain = NULL;
+	lpExitCode = NULL;
 	id = (int)lpParameter;
 	while (recv(s_client[id], buff, sizeof(buff) - 1, 0))
 		chain = add_str(chain, 0, buff[0]);
@@ -31,7 +37,7 @@ DWORD WINAPI f_client(__in LPVOID lpParameter)
 		{
 			chain = add_str(chain, "Le client ", 0);
 			chain = add_str(chain, pseudo, 0);
-			chain = add_str(chain, " s'est deconnecter\n");
+			chain = add_str(chain, " s'est deconnecter\n", 0);
 			text = export_str(chain);
 			free_list(chain);
 			f_multicast(text, id);
@@ -44,10 +50,13 @@ DWORD WINAPI f_client(__in LPVOID lpParameter)
 
 void f_accept(SOCKET s_server, SOCKADDR_IN server_addr)
 {
+	int csize;
+
 	s_client = (SOCKET *)realloc(s_client, sizeof(SOCKET) * i);
-	client = (SOCKADDR_IN *)realloc(client, sizeof(SOCKADDR_IN) * i);
+	client = (SOCKADDR_IN)realloc(client, sizeof(SOCKADDR_IN) * i);
 	h_thread = (HANDLE *)realloc(h_thread, sizeof(HANDLE) * i);
-	s_client[i] = accept(s_server, (SOCKADDR *)&client, (int *)sizeof(client));
+	csize = sizeof(client[i]);
+	s_client[i] = accept(s_server, (SOCKADDR *)&client[i], &csize);
 	if (s_client[i] == INVALID_SOCKET)
 		printf("Erreur fonction accept\n");
 	else
@@ -76,7 +85,7 @@ void f_server(void)
 	if (listen(s_server, 0) == SOCKET_ERROR)
 		printf("Impossible d'ecouter...\n");
 	else
-	{
+	{ 
 		while (1)
 			f_accept(s_server, server_addr);
 	}
