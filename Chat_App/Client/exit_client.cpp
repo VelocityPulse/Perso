@@ -3,7 +3,6 @@
 bool f_exit_client(char *text)
 {
 	char    secret[] = "EXIT PROGRAM";
-	char    input[40];
 	int     i;
 	int     cpt;
 	int     match;
@@ -15,7 +14,7 @@ bool f_exit_client(char *text)
 		cpt++;
 	while (i < cpt && text[i] != '\0' && match == 0)
 	{
-		if (input[i + 1] != secret[i + 1])
+		if (text[i + 1] != secret[i + 1])
 			match = 1;
 		i++;
 	}

@@ -129,7 +129,7 @@ t_str *add_list(t_str *begin)
 	}
 	list->next = NULL;
 	list->index = 0;
-	while (i <= 32)
+	while (i <= 31)
 	{
 		list->str[i] = 0;
 		i++;
