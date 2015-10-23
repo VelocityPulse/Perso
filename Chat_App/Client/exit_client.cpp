@@ -15,10 +15,10 @@ bool f_exit_client(char *text)
 	while (i < cpt && text[i] != '\0' && match == 0)
 	{
 		if (text[i + 1] != secret[i + 1])
-			match = 1;
+			match = 1; // difference
 		i++;
 	}
-	if (match == 0)
-		return (1);
+	if (match == 0) // identique
+		return (1); // exit program
 	return(0);
 }

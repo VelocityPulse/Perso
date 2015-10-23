@@ -11,7 +11,6 @@ t_str	*add_str(t_str *begin, char *str, char c)
 	list = begin;
 	while (list->next)
 		list = list->next;
-
 	if (str)
 	{
 		while (str[i])
@@ -129,7 +128,7 @@ t_str *add_list(t_str *begin)
 	}
 	list->next = NULL;
 	list->index = 0;
-	while (i <= 31)
+	while (i <= 32)
 	{
 		list->str[i] = 0;
 		i++;
