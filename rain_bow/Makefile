@@ -10,7 +10,7 @@
 #*                                                                            *#
 #* ************************************************************************** *#
 
-SRC = test1.c libft.a libmlx.a
+SRC = rainbow.c libft.a libmlx.a
 
 FRAMEWORK = -framework OpenGL -framework AppKit
 
