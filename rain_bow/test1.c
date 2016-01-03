@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 18:50:41 by                   #+#    #+#             */
-/*   Updated: 2015/12/26 18:40:26 by                  ###   ########.fr       */
+/*   Updated: 2016/01/03 16:13:05 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,30 +133,22 @@ int		next_rainbow(int color, int *mode)
 	return (color);
 }
 
-int		*ft_color_w(int code, t_env *e)
+int		*ft_color_w(int code, t_env *e, int multiplicator)
 {
 	int		x;
 	int		y;
-	int mode;
+	int		mode;
+	int		save;
 
+	save = multiplicator;
 	y = 0;
 	mode = 0;
-	if (code == 53) // echap
-		exit(0);
-	else if (code == 12) // Q
-		code = (int)0xff0000;
-	else if (code == 13) // W
-		code = (int)0x00ff00; 
-	else if (code == 14) // E
-		code = (int)0x0000ff;
-	else
-		code = (int)0xffffff;
 	while (y < e->height)
 	{
 		x = 0;
-		code = next_rainbow(code, &mode);
-		code = next_rainbow(code, &mode);
-		code = next_rainbow(code, &mode);
+		multiplicator = save;
+		while (multiplicator-- > 0 )
+			code = next_rainbow(code, &mode);
 		while (x < e->width)
 		{
 			mlx_pixel_put(e->mlx, e->win, x, y, code);
@@ -164,13 +156,35 @@ int		*ft_color_w(int code, t_env *e)
 		}
 		y++;
 	}
-	ft_putnbr(code); ft_putchar('\n');
 	return (0);
 }
 
 int		key_hook(int keycode, t_env *e)
 {
-	ft_color_w(keycode, e);
+	int static multiplicator = 3;
+	int static previous = (int)0xff0000;
+
+	if (keycode == 53) // echap
+		exit(0);
+	else if (keycode == 78)
+		multiplicator--;
+	else if (keycode == 69)
+		multiplicator++;
+	else
+	{
+		if (keycode == 12) // Q
+			keycode = (int)0xff0000;
+		else if (keycode == 13) // W
+			keycode = (int)0x00ff00;
+		else if (keycode == 14) // E
+			keycode = (int)0x0000ff;
+		else
+			keycode = (int)0xffffff;
+		previous = keycode;
+	}
+	if (multiplicator == 0)
+		multiplicator = 1;
+	ft_color_w(previous, e, multiplicator);
 	return (0);
 }
 
@@ -178,6 +192,9 @@ int		main(int argc, char **argv)
 {
 	t_env	e;
 
+	ft_putstr("USING :\tQ for star on red\n\tW for start on green\
+\n\tE for start on blue\n\t+ for mulitiplicate rainbow\n\t- for soustrate \
+rainbow\n\tEchap for quit\n");
 	e.height = 600;
 	e.width = 400;
 	e.mlx = mlx_init();
