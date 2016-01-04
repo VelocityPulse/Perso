@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 18:50:41 by                   #+#    #+#             */
-/*   Updated: 2016/01/03 16:13:05 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/01/04 11:52:47 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int		next_rainbow(int color, int *mode)
 		return (back_blue(color, mode));
 	return (color);
 }
-
+#include <stdio.h>
 int		*ft_color_w(int code, t_env *e, int multiplicator)
 {
 	int		x;
@@ -166,9 +166,9 @@ int		key_hook(int keycode, t_env *e)
 
 	if (keycode == 53) // echap
 		exit(0);
-	else if (keycode == 78)
+	else if (keycode == 78 || keycode == 27)
 		multiplicator--;
-	else if (keycode == 69)
+	else if (keycode == 69 || keycode == 24)
 		multiplicator++;
 	else
 	{
