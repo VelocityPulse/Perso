@@ -6,38 +6,11 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 18:50:41 by                   #+#    #+#             */
-/*   Updated: 2016/01/04 11:52:47 by                  ###   ########.fr       */
+/*   Updated: 2016/01/04 16:33:59 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft.h"
-#include <unistd.h>
-#include <stdlib.h>
-
-#define red 0xff0000
-#define green 0x00ff00
-#define blue 0x0000ff
-
-#define blueadd 0x000001
-#define redadd 0x010000
-#define greenadd 0x000100
-
-#define goblue 1
-#define gored 2
-#define gogreen 3
-
-#define backblue 4
-#define backred 5
-#define backgreen 6
-
-typedef struct	s_env
-{
-	void	*mlx;
-	void	*win;
-	int		height;
-	int		width;
-}				t_env;
+#include "header.h"
 
 int		add_green(int color, int *mode)
 {
@@ -132,30 +105,30 @@ int		next_rainbow(int color, int *mode)
 		return (back_blue(color, mode));
 	return (color);
 }
-#include <stdio.h>
-int		*ft_color_w(int code, t_env *e, int multiplicator)
+
+int		*ft_color_w(int code, t_env *x, int multiplicator)
 {
-	int		x;
-	int		y;
+	t_pt	pt;
 	int		mode;
 	int		save;
 
 	save = multiplicator;
-	y = 0;
+	pt.y = 0;
 	mode = 0;
-	while (y < e->height)
+	while (pt.y < x->height)
 	{
-		x = 0;
+		pt.x = 0;
 		multiplicator = save;
-		while (multiplicator-- > 0 )
+		while (multiplicator-- > 0)
 			code = next_rainbow(code, &mode);
-		while (x < e->width)
+		while (pt.x < x->width)
 		{
-			mlx_pixel_put(e->mlx, e->win, x, y, code);
-			x++;
+			ft_draw_pixel(x, code, pt);
+			pt.x++;
 		}
-		y++;
+		pt.y++;
 	}
+	mlx_put_image_to_window(x->mlx, x->win, x->mlx_img->img, 0, 0);
 	return (0);
 }
 
@@ -190,16 +163,19 @@ int		key_hook(int keycode, t_env *e)
 
 int		main(int argc, char **argv)
 {
-	t_env	e;
+	t_env	*x;
 
-	ft_putstr("USING :\tQ for star on red\n\tW for start on green\
+	ft_putstr("USING :\tQ for start on red\n\tW for start on green\
 \n\tE for start on blue\n\t+ for mulitiplicate rainbow\n\t- for soustrate \
 rainbow\n\tEchap for quit\n");
-	e.height = 600;
-	e.width = 400;
-	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, e.width, e.height, "test1");
-	mlx_key_hook(e.win, key_hook, &e);
-	mlx_loop(e.mlx);
+
+	x = (t_env *)ft_memalloc(sizeof(t_env));
+	x->height = 600;
+	x->width = 400;
+	x->mlx = mlx_init();
+	x->win = mlx_new_window(x->mlx, x->width, x->height, "test1");
+	ft_new_image(x);
+	mlx_key_hook(x->win, key_hook, x);
+	mlx_loop(x->mlx);
 	return (0);
 }

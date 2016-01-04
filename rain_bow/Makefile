@@ -6,13 +6,16 @@
 #*   By:  <>                                        +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2015/12/26 15:16:47 by                   #+#    #+#             *#
-#*   Updated: 2015/12/26 15:20:49 by                  ###   ########.fr       *#
+#*   Updated: 2016/01/04 16:44:34 by                  ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
-SRC = rainbow.c libft.a libmlx.a
+SRC = rainbow.c draw.c libft.a libmlx.a
 
 FRAMEWORK = -framework OpenGL -framework AppKit
 
 all:
 	gcc $(FRAMEWORK) $(SRC)
+
+fclean:
+	rm a.out
