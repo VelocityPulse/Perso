@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/24 22:03:34 by                   #+#    #+#             */
-/*   Updated: 2016/01/24 22:36:36 by                  ###   ########.fr       */
+/*   Updated: 2016/01/24 23:15:40 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdio.h>
 
 # define PAUSE while (1) sleep(1000);
-# define YOLO printf("\n\nYOLO\n");
-# define YOLO1 printf("\nYOLO1 -\n");
-# define YOLO2 printf("YOLO2 --\n");
-# define TEST printf("\n\ntest\n");
+# define YOLO ft_putstr("\n\nYOLO\n");
+# define YOLO1 ft_putstr("\nYOLO1 -\n");
+# define YOLO2 ft_putstr("YOLO2 --\n");
+# define TEST ft_putstr("\n\ntest\n");
 
 #endif
