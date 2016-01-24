@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/24 22:03:34 by                   #+#    #+#             */
-/*   Updated: 2016/01/24 22:20:38 by                  ###   ########.fr       */
+/*   Updated: 2016/01/24 22:36:36 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 # define YOLO printf("\n\nYOLO\n");
 # define YOLO1 printf("\nYOLO1 -\n");
 # define YOLO2 printf("YOLO2 --\n");
+# define TEST printf("\n\ntest\n");
 
 #endif
