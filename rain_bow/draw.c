@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 14:20:40 by                   #+#    #+#             */
-/*   Updated: 2016/01/04 16:35:03 by                  ###   ########.fr       */
+/*   Updated: 2016/01/04 17:34:09 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void	ft_draw_pixel(t_env *x, int color, t_pt pt)
 
 	octet = x->mlx_img->bpp / 8;
 	position = (pt.y * x->mlx_img->width) + (pt.x * octet);
-	if (ft_memcpy(x->mlx_img->data + position, &color, (unsigned)octet))
+	if (ft_memcmp(x->mlx_img->data + position, &color, (unsigned)octet))
 		ft_memcpy(x->mlx_img->data + position, &color, (unsigned)octet);
 }
