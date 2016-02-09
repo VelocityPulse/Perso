@@ -7,7 +7,6 @@
 # include <string.h>
 #include <VersionHelpers.h>
 
-# include "list.h"
 
 # define ENTRY printf(" ENTRY ");
 # define ENTRY2 printf(" ENTRY2 ");
