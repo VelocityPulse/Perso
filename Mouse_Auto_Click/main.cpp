@@ -40,14 +40,14 @@ LRESULT __stdcall HookMouseProcedure(int nCode, WPARAM wParam, LPARAM lParam)
 			{
 				if (up == 0)
 				{
-					Sleep(1);
+					Sleep(17);
 					mouse_event(MOUSEEVENTF_LEFTDOWN, coor.x, coor.y, 0, 0);
 					printf("1");
 					up = 1;
 				}
 				else
 				{
-					Sleep(1);
+					Sleep(17);
 					mouse_event(MOUSEEVENTF_LEFTUP, coor.x, coor.y, 0, 0);
 					up = 0;
 				}
