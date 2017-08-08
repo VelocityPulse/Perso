@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/24 22:03:34 by                   #+#    #+#             */
-/*   Updated: 2017/08/08 15:07:44 by cchameyr         ###   ########.fr       */
+/*   Updated: 2017/08/08 15:50:50 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@
 # define YOLO2 ft_putstr("YOLO2 --\n");
 # define TEST ft_putstr("\n\ntest\n");
 # define YOLOO ft_putstr("\n\nYOLO---------------\n");
-# define DEBUG printf("DEBUG -- %d -- \n", __LINE__);
+# define DEBUG printf("DEBUG -- line %d -- file -- %s --\n", __LINE__, __FILE__);
 
 #endif
