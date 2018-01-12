@@ -1,0 +1,26 @@
+C++ Template :
+
+#parse("C File Header.h")
+#[[#ifndef]]# ${INCLUDE_GUARD}
+#[[#define]]# ${INCLUDE_GUARD}
+#set( $COPY = "copy" )
+#set( $CANONICAL_COMMENT = "// Canonical");
+
+${NAMESPACES_OPEN}
+
+class ${NAME} {
+
+public:
+    ${NAME}(); ${CANONICAL_COMMENT}
+    ${NAME}(${NAME} const &${COPY}); ${CANONICAL_COMMENT}
+    ~${NAME}; ${CANONICAL_COMMENT}
+
+    ${NAME} &operator=(${NAME} const &${COPY}); ${CANONICAL_COMMENT}    
+    
+ private:
+
+};
+
+${NAMESPACES_CLOSE}
+
+#[[#endif]]# //${INCLUDE_GUARD}
