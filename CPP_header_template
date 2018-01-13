@@ -1,4 +1,4 @@
-C++ Template :
+C++ CLASS TEMPLATE :
 
 #parse("C File Header.h")
 #[[#ifndef]]# ${INCLUDE_GUARD}
@@ -24,3 +24,27 @@ public:
 ${NAMESPACES_CLOSE}
 
 #[[#endif]]# //${INCLUDE_GUARD}
+
+
+C++ HEADER TEMPLATE:
+#[[#include]]# "${HEADER_FILENAME}"
+#set( $COPY = "copy" )
+
+${NAME}::${NAME}() {
+
+}
+
+${NAME}::${NAME}(${NAME} const &${COPY}) {
+    *this = copy;
+}
+
+${NAME}::~${NAME}() {
+
+}
+
+${NAME} &${NAME}::operator=(${NAME} const &${COPY}) {
+    if (this != &${COPY}) {
+        // copy 
+    }
+    return *this;
+}
